@@ -12,7 +12,7 @@ import { useERC20TokenBalance } from '../../../web3/hooks/useERC20TokenBalance'
 import { useChainId, useChainIdValid } from '../../../web3/hooks/useChainState'
 import ActionButton from '../../../extension/options-page/DashboardComponents/ActionButton'
 import { useDonateCallback } from '../hooks/useDonateCallback'
-import { useERC20TokenApproveCallback, ApproveState } from '../../../web3/hooks/useERC20TokenApproveCallback'
+import { useERC20TokenApproveCallback, ApproveStateType } from '../../../web3/hooks/useERC20TokenApproveCallback'
 import { GITCOIN_CONSTANT } from '../constants'
 import { SelectERC20TokenDialog } from '../../../web3/UI/SelectERC20TokenDialog'
 import { TokenAmountPanel } from '../../../web3/UI/TokenAmountPanel'
@@ -120,10 +120,11 @@ function DonateDialogUI(props: DonateDialogUIProps) {
         BulkCheckoutAddress,
     )
     const onApprove = useCallback(async () => {
-        if (approveState !== ApproveState.NOT_APPROVED) return
+        if (approveState.type !== ApproveStateType.NOT_APPROVED) return
         await approveCallback()
     }, [approveCallback, approveState])
-    const approveRequired = approveState === ApproveState.NOT_APPROVED || approveState === ApproveState.PENDING
+    const approveRequired =
+        approveState.type === ApproveStateType.NOT_APPROVED || approveState.type === ApproveStateType.PENDING
     //#endregion
 
     //#region blocking
@@ -234,10 +235,10 @@ function DonateDialogUI(props: DonateDialogUIProps) {
                             fullWidth
                             variant="contained"
                             size="large"
-                            disabled={approveState === ApproveState.PENDING}
+                            disabled={approveState.type === ApproveStateType.PENDING}
                             onClick={onApprove}>
-                            {approveState === ApproveState.NOT_APPROVED ? `Approve ${token.symbol}` : ''}
-                            {approveState === ApproveState.PENDING ? `Approve... ${token.symbol}` : ''}
+                            {approveState.type === ApproveStateType.NOT_APPROVED ? `Approve ${token.symbol}` : ''}
+                            {approveState.type === ApproveStateType.PENDING ? `Approve... ${token.symbol}` : ''}
                         </ActionButton>
                     ) : (
                         <ActionButton

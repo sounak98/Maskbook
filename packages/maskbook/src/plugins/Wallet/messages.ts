@@ -16,6 +16,17 @@ type SelectERC20TokenDialogEvent =
           token?: EtherTokenDetailed | ERC20TokenDetailed
       }
 
+type UnlockERC20TokenDialogEvent =
+    | {
+          open: true
+          token: ERC20TokenDetailed
+          amount: string
+          spender: string
+      }
+    | {
+          open: false
+      }
+
 type SelectProviderDialogEvent =
     | {
           open: true
@@ -72,6 +83,11 @@ interface WalletMessage {
      * Select token dialog
      */
     selectERC20TokenDialogUpdated: SelectERC20TokenDialogEvent
+
+    /**
+     * Unlock token dialog
+     */
+    unlockERC20TokenDialogUpdated: UnlockERC20TokenDialogEvent
 
     /**
      * Transaction dialog

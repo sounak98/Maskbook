@@ -5,6 +5,7 @@ import { SelectProviderDialog } from './UI/SelectProviderDialog'
 import { SelectWalletDialog } from './UI/SelectWalletDialog'
 import { WalletConnectQRCodeDialog } from './UI/WalletConnectQRCodeDialog'
 import { WalletStatusDialog } from './UI/WalletStatusDialog'
+import { UnlockERC20TokenDialog } from '../../web3/UI/UnlockERC20TokenDialog'
 
 export const WalletPluginDefine: PluginConfig = {
     pluginName: 'Wallet',
@@ -17,6 +18,7 @@ export const WalletPluginDefine: PluginConfig = {
                 <TransactionDialog />
                 <SelectWalletDialog />
                 <SelectProviderDialog />
+                <UnlockERC20TokenDialog />
                 <WalletStatusDialog />
                 <WalletConnectQRCodeDialog />
             </>
@@ -28,6 +30,7 @@ export const WalletPluginDefine: PluginConfig = {
                 <TransactionDialog />
                 <SelectWalletDialog />
                 <SelectProviderDialog />
+                <UnlockERC20TokenDialog />
                 <WalletStatusDialog />
                 <WalletConnectQRCodeDialog />
             </>

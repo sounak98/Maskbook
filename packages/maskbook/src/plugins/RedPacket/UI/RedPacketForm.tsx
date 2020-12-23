@@ -29,7 +29,7 @@ import { EthereumStatusBar } from '../../../web3/UI/EthereumStatusBar'
 import { TokenAmountPanel } from '../../../web3/UI/TokenAmountPanel'
 import { SelectERC20TokenDialog } from '../../../web3/UI/SelectERC20TokenDialog'
 import { useConstant } from '../../../web3/hooks/useConstant'
-import { useERC20TokenApproveCallback, ApproveState } from '../../../web3/hooks/useERC20TokenApproveCallback'
+import { useERC20TokenApproveCallback, ApproveStateType } from '../../../web3/hooks/useERC20TokenApproveCallback'
 import { useCreateCallback } from '../hooks/useCreateCallback'
 import ActionButton from '../../../extension/options-page/DashboardComponents/ActionButton'
 import { TransactionStateType } from '../../../web3/hooks/useTransactionState'
@@ -140,10 +140,11 @@ export function RedPacketForm(props: RedPacketFormProps) {
         HappyRedPacketContractAddress,
     )
     const onApprove = useCallback(async () => {
-        if (approveState !== ApproveState.NOT_APPROVED) return
+        if (approveState.type !== ApproveStateType.NOT_APPROVED) return
         await approveCallback()
     }, [approveState, approveCallback])
-    const approveRequired = approveState === ApproveState.NOT_APPROVED || approveState === ApproveState.PENDING
+    const approveRequired =
+        approveState.type === ApproveStateType.NOT_APPROVED || approveState.type === ApproveStateType.PENDING
     //#endregion
 
     //#region blocking
@@ -324,10 +325,10 @@ export function RedPacketForm(props: RedPacketFormProps) {
                     fullWidth
                     variant="contained"
                     size="large"
-                    disabled={approveState === ApproveState.PENDING}
+                    disabled={approveState.type === ApproveStateType.PENDING}
                     onClick={onApprove}>
-                    {approveState === ApproveState.NOT_APPROVED ? `Approve ${token.symbol}` : ''}
-                    {approveState === ApproveState.PENDING ? `Approve... ${token.symbol}` : ''}
+                    {approveState.type === ApproveStateType.NOT_APPROVED ? `Approve ${token.symbol}` : ''}
+                    {approveState.type === ApproveStateType.PENDING ? `Approve... ${token.symbol}` : ''}
                 </ActionButton>
             ) : validationMessage ? (
                 <ActionButton className={classes.button} fullWidth variant="contained" disabled>

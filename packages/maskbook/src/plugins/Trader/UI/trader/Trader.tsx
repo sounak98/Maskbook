@@ -8,7 +8,7 @@ import { TradeForm } from './TradeForm'
 import { TradeRoute } from '../uniswap/TradeRoute'
 import { TradeSummary } from '../trader/TradeSummary'
 import { ConfirmDialog } from './ConfirmDialog'
-import { useERC20TokenApproveCallback, ApproveState } from '../../../../web3/hooks/useERC20TokenApproveCallback'
+import { useERC20TokenApproveCallback, ApproveStateType } from '../../../../web3/hooks/useERC20TokenApproveCallback'
 import { useTradeApproveComputed } from '../../trader/useTradeApproveComputed'
 import { TradeActionType } from '../../trader/useTradeState'
 import { TokenPanelType, TradeComputed, TradeProvider } from '../../types'
@@ -209,12 +209,12 @@ export function Trader(props: TraderProps) {
         RouterV2Address,
     )
     const onApprove = useCallback(async () => {
-        if (approveState !== ApproveState.NOT_APPROVED) return
+        if (approveState.type !== ApproveStateType.NOT_APPROVED) return
         await approveCallback()
     }, [approveState])
 
     const onExactApprove = useCallback(async () => {
-        if (approveState !== ApproveState.NOT_APPROVED) return
+        if (approveState.type !== ApproveStateType.NOT_APPROVED) return
         await approveCallback(true)
     }, [approveState])
     //#endregion

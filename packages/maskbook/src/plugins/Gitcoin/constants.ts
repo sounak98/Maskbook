@@ -1,9 +1,7 @@
 import { ChainId } from '../../web3/types'
-import { createPluginMessage } from '../utils/createPluginMessage'
-import { createPluginRPC } from '../utils/createPluginRPC'
-export const gitcoinPluginID = 'co.gitcoin'
-const GitcoinMessage = createPluginMessage<{ _: unknown }>(gitcoinPluginID)
-export const PluginGitcoinRPC = createPluginRPC(gitcoinPluginID, () => import('./service'), GitcoinMessage.events._)
+
+export const GITCOIN_PLUGIN_ID = 'co.gitcoin'
+
 export const GITCOIN_CONSTANT = {
     // accounts
     GITCOIN_MAINTAINER_ADDRESS: {
@@ -41,3 +39,5 @@ export const GITCOIN_CONSTANT = {
         [ChainId.Gorli]: 5,
     },
 }
+
+export const GITCOIN_API_GRANTS_V1 = 'https://gitcoin.provide.maskbook.com/api/v0.1/grants/'

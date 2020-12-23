@@ -6,13 +6,13 @@ import MaskbookPluginWrapper from '../MaskbookPluginWrapper'
 import { extractTextFromTypedMessage } from '../../protocols/typed-message'
 import { usePostInfoDetails } from '../../components/DataSource/usePostInfo'
 import { Gitcoin } from './UI/Gitcoin'
-import { gitcoinPluginID } from './constants'
+import { GITCOIN_PLUGIN_ID } from './constants'
 
 const isGitcoin = (x: string): boolean => x.startsWith('https://gitcoin.co/grants')
 
 export const GitcoinPluginDefine: PluginConfig = {
     pluginName: 'Gitcoin',
-    identifier: gitcoinPluginID,
+    identifier: GITCOIN_PLUGIN_ID,
     stage: PluginStage.Production,
     scope: PluginScope.Public,
     successDecryptionInspector: function Component(props): JSX.Element | null {
