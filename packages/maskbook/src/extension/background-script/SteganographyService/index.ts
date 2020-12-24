@@ -1,17 +1,15 @@
 import { assertEnvironment, Environment } from '@dimensiondev/holoflows-kit'
-import { decodeArrayBuffer, encodeArrayBuffer } from '@dimensiondev/kit'
+import { decodeArrayBuffer, encodeArrayBuffer, memoizePromise } from '@dimensiondev/kit'
 import {
     AlgorithmVersion,
-    decode,
     DecodeOptions,
-    encode,
     EncodeOptions,
     GrayscaleAlgorithm,
     TransformAlgorithm,
 } from '@dimensiondev/stego-js'
-import { getDimension } from '../../utils/image'
-import { memoizePromise } from '../../utils/memoize'
-import { downloadUrl, getUrl } from '../../utils/utils'
+import { getDimension } from '../../../utils/image'
+import { downloadUrl, getUrl } from '../../../utils/utils'
+import { decode, encode } from './api'
 
 assertEnvironment(Environment.ManifestBackground)
 
