@@ -47,10 +47,13 @@ export function useERC20TokenApproveCallback(address: string, amount?: string, s
     const approveState = useMemo(
         () => ({
             type: approveStateType,
+            address,
+            amount,
+            spender,
             allowance,
             balance,
         }),
-        [approveStateType, allowance, balance],
+        [approveStateType, address, spender, allowance, balance],
     )
 
     const approveCallback = useCallback(

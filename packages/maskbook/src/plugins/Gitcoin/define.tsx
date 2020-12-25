@@ -7,6 +7,7 @@ import { extractTextFromTypedMessage } from '../../protocols/typed-message'
 import { usePostInfoDetails } from '../../components/DataSource/usePostInfo'
 import { Gitcoin } from './UI/Gitcoin'
 import { GITCOIN_PLUGIN_ID } from './constants'
+import { DonateDialog } from './UI/DonateDialog'
 
 const isGitcoin = (x: string): boolean => x.startsWith('https://gitcoin.co/grants')
 
@@ -29,6 +30,16 @@ export const GitcoinPluginDefine: PluginConfig = {
         if (!link) return null
         return <Renderer url={link} />
     },
+    PageComponent() {
+        return <>
+            <DonateDialog />
+        </>
+    },
+    DashboardComponent() {
+        return <>
+            <DonateDialog />
+        </>
+    }
 }
 
 function Renderer(props: React.PropsWithChildren<{ url: string }>) {

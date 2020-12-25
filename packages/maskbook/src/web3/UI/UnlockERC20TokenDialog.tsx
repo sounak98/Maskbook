@@ -57,12 +57,7 @@ export function UnlockERC20TokenDialog(props: UnlockERC20TokenDialogProps) {
     const [amount, setAmount] = useState('0')
     const [spender, setSpender] = useState('')
 
-    const amountForApprove = new BigNumber(amount).multipliedBy(new BigNumber(10).pow(token?.decimals ?? 0)).toFixed()
-
-    //#region context
-    const account = useAccount()
-    const chainIdValid = useChainIdValid()
-    //#endregion
+    const amount_ = new BigNumber(amount).multipliedBy(new BigNumber(10).pow(token?.decimals ?? 0)).toFixed()
 
     //#region approve
     const [approveState, approveCallback] = useERC20TokenApproveCallback(
@@ -106,11 +101,11 @@ export function UnlockERC20TokenDialog(props: UnlockERC20TokenDialogProps) {
     //#endregion
 
     const validationMessage = useMemo(() => {
-        if (!amount || new BigNumber(amountForApprove).isZero()) return 'Enter an amount'
-        if (new BigNumber(approveState.allowance).gte(amountForApprove)) return 'Approved'
-        if (new BigNumber(approveState.balance).lt(amountForApprove)) return 'Insufficent Balance'
+        if (!amount || new BigNumber(amount_).isZero()) return 'Enter an amount'
+        if (new BigNumber(approveState.allowance).gte(amount_)) return 'Approved'
+        if (new BigNumber(approveState.balance).lt(amount_)) return 'Insufficent Balance'
         return ''
-    }, [amount, approveState.allowance, approveState.balance, amountForApprove])
+    }, [amount, approveState.allowance, approveState.balance, amount_])
 
     const renderGrid = (content: React.ReactNode) => (
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
@@ -133,19 +128,6 @@ export function UnlockERC20TokenDialog(props: UnlockERC20TokenDialogProps) {
                     </ActionButton>
                 </Grid>,
             )
-        if (!account || !chainIdValid)
-            return renderGrid(
-                <Grid item xs={12}>
-                    <ActionButton
-                        className={classes.button}
-                        fullWidth
-                        variant="contained"
-                        size="large"
-                        onClick={onConnect}>
-                        {t('plugin_wallet_connect_a_wallet')}
-                    </ActionButton>
-                </Grid>,
-            )
         if (approveState.type === ApproveStateType.NOT_APPROVED)
             return renderGrid(
                 <>
@@ -156,7 +138,7 @@ export function UnlockERC20TokenDialog(props: UnlockERC20TokenDialogProps) {
                             variant="contained"
                             size="large"
                             onClick={onExactApprove}>
-                            {`Unlock ${formatBalance(new BigNumber(amountForApprove), token?.decimals ?? 0, 2)} ${
+                            {`Unlock ${formatBalance(new BigNumber(amount_), token?.decimals ?? 0, 2)} ${
                                 token?.symbol ?? 'Token'
                             }`}
                         </ActionButton>
