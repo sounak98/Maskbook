@@ -1,18 +1,18 @@
 import { useCallback, useMemo, useState } from 'react'
 import { makeStyles, createStyles, DialogContent, DialogActions, Grid, Typography } from '@material-ui/core'
 import BigNumber from 'bignumber.js'
-import { useStylesExtends } from '../../components/custom-ui-helper'
-import { useI18N } from '../../utils/i18n-next-ui'
-import { useRemoteControlledDialog } from '../../utils/hooks/useRemoteControlledDialog'
-import { WalletMessages } from '../../plugins/Wallet/messages'
-import { InjectedDialog } from '../../components/shared/InjectedDialog'
-import { useAccount } from '../hooks/useAccount'
-import { useChainIdValid } from '../hooks/useChainState'
-import { ApproveStateType, useERC20TokenApproveCallback } from '../hooks/useERC20TokenApproveCallback'
-import type { ERC20TokenDetailed } from '../types'
-import ActionButton from '../../extension/options-page/DashboardComponents/ActionButton'
-import { formatBalance, formatEthereumAddress } from '../../plugins/Wallet/formatter'
-import { TokenAmountPanel } from './TokenAmountPanel'
+import { useStylesExtends } from '../../../components/custom-ui-helper'
+import { useI18N } from '../../../utils/i18n-next-ui'
+import { useRemoteControlledDialog } from '../../../utils/hooks/useRemoteControlledDialog'
+import { WalletMessages } from '../../Wallet/messages'
+import { InjectedDialog } from '../../../components/shared/InjectedDialog'
+import { useAccount } from '../../../web3/hooks/useAccount'
+import { useChainIdValid } from '../../../web3/hooks/useChainState'
+import { ApproveStateType, useERC20TokenApproveCallback } from '../../../web3/hooks/useERC20TokenApproveCallback'
+import type { ERC20TokenDetailed } from '../../../web3/types'
+import ActionButton from '../../../extension/options-page/DashboardComponents/ActionButton'
+import { formatBalance, formatEthereumAddress } from '../../Wallet/formatter'
+import { TokenAmountPanel } from '../../../web3/UI/TokenAmountPanel'
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) =>
     }),
 )
 
-export interface UnlockERC20TokenDialogProps {}
+export interface UnlockERC20TokenDialogProps { }
 
 export function UnlockERC20TokenDialog(props: UnlockERC20TokenDialogProps) {
     const { t } = useI18N()
@@ -138,9 +138,8 @@ export function UnlockERC20TokenDialog(props: UnlockERC20TokenDialogProps) {
                             variant="contained"
                             size="large"
                             onClick={onExactApprove}>
-                            {`Unlock ${formatBalance(new BigNumber(amount_), token?.decimals ?? 0, 2)} ${
-                                token?.symbol ?? 'Token'
-                            }`}
+                            {`Unlock ${formatBalance(new BigNumber(amount_), token?.decimals ?? 0, 2)} ${token?.symbol ?? 'Token'
+                                }`}
                         </ActionButton>
                     </Grid>
                     <Grid item xs={6}>

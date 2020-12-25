@@ -1,12 +1,9 @@
 import { PluginConfig, PluginStage, PluginScope } from '../types'
-import { TransactionDialog } from '../../web3/UI/TransactionDialog'
 import { PLUGIN_IDENTIFIER } from './constants'
 import { SelectProviderDialog } from './UI/SelectProviderDialog'
 import { SelectWalletDialog } from './UI/SelectWalletDialog'
 import { WalletConnectQRCodeDialog } from './UI/WalletConnectQRCodeDialog'
 import { WalletStatusDialog } from './UI/WalletStatusDialog'
-import { UnlockERC20TokenDialog } from '../../web3/UI/UnlockERC20TokenDialog'
-import { SelectERC20TokenDialog } from '../../web3/UI/SelectERC20TokenDialog'
 
 export const WalletPluginDefine: PluginConfig = {
     pluginName: 'Wallet',
@@ -16,11 +13,8 @@ export const WalletPluginDefine: PluginConfig = {
     PageComponent() {
         return (
             <>
-                <TransactionDialog />
                 <SelectWalletDialog />
                 <SelectProviderDialog />
-                <SelectERC20TokenDialog />
-                <UnlockERC20TokenDialog />
                 <WalletStatusDialog />
                 <WalletConnectQRCodeDialog />
             </>
@@ -29,11 +23,8 @@ export const WalletPluginDefine: PluginConfig = {
     DashboardComponent() {
         return (
             <>
-                <TransactionDialog />
                 <SelectWalletDialog />
                 <SelectProviderDialog />
-                <SelectERC20TokenDialog />
-                <UnlockERC20TokenDialog />
                 <WalletStatusDialog />
                 <WalletConnectQRCodeDialog />
             </>

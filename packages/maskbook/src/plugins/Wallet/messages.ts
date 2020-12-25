@@ -4,29 +4,6 @@ import { createPluginMessage } from '../utils/createPluginMessage'
 import { createPluginRPC } from '../utils/createPluginRPC'
 import { PLUGIN_IDENTIFIER } from './constants'
 
-type SelectERC20TokenDialogEvent =
-    | {
-          open: true
-          address?: string
-          lists?: string[]
-          excludeTokens?: string[]
-      }
-    | {
-          open: false
-          token?: EtherTokenDetailed | ERC20TokenDetailed
-      }
-
-type UnlockERC20TokenDialogEvent =
-    | {
-          open: true
-          token: ERC20TokenDetailed
-          amount: string
-          spender: string
-      }
-    | {
-          open: false
-      }
-
 type SelectProviderDialogEvent =
     | {
           open: true
@@ -45,19 +22,7 @@ type SelectWalletDialogEvent =
       }
 
 type WalletStatusDialogEvent = {
-    open: boolean
 }
-
-type TransactionDialogEvent =
-    | {
-          open: true
-          state: TransactionState
-          shareLink?: string
-          summary?: string
-      }
-    | {
-          open: false
-      }
 
 type WalletConnectQRCodeDialogEvent =
     | {
@@ -78,21 +43,6 @@ interface WalletMessage {
      * Select provider dialog
      */
     selectProviderDialogUpdated: SelectProviderDialogEvent
-
-    /**
-     * Select token dialog
-     */
-    selectERC20TokenDialogUpdated: SelectERC20TokenDialogEvent
-
-    /**
-     * Unlock token dialog
-     */
-    unlockERC20TokenDialogUpdated: UnlockERC20TokenDialogEvent
-
-    /**
-     * Transaction dialog
-     */
-    transactionDialogUpdated: TransactionDialogEvent
 
     /**
      * Wallet status dialog
