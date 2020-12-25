@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import useSWR from 'swr'
 import { EthereumAddress } from 'wallet.ts'
 import { formatChecksumAddress } from '../../plugins/Wallet/formatter'
-import { createEetherToken } from '../helpers'
+import { createEtherToken } from '../helpers'
 import { ChainId, CurrencyType, EthereumTokenType, AssetDetailed } from '../types'
 import { useAccount } from './useAccount'
 import { useChainId } from './useChainState'
@@ -53,7 +53,7 @@ export function useAssetsDetailedDebank(): AssetDetailed[] {
     return data.map((x) => ({
         token:
             x.id === 'eth'
-                ? createEetherToken(chainId)
+                ? createEtherToken(chainId)
                 : {
                       // distinguish token type
                       type: EthereumTokenType.ERC20,
