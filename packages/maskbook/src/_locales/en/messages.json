@@ -395,7 +395,8 @@
     "plugin_poll_deadline": "{{time}} left until vote ends",
     "wallet_transfer_to_address": "To Address",
     "wallet_transfer_send": "Send",
-    "wallet_transfer_balance": "Balance",
+    "wallet_transfer_balance": "Balance {{balance}} {{symbol}}",
     "wallet_transfer_title": "Transfer",
-    "wallet_transfer_memo": "Memo"
+    "wallet_transfer_memo": "Memo",
+    "wallet_transfer_amount": "Amount "
 }
