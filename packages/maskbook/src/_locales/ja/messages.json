@@ -392,5 +392,12 @@
     "plugin_poll_status_closed": "投票は終了しました",
     "plugin_poll_status_voting": "投票しています",
     "plugin_poll_status_voted": "投票した.",
-    "plugin_poll_deadline": "{{time}}で終了"
+    "plugin_poll_deadline": "{{time}}で終了",
+    "wallet_transfer_to_address": "",
+    "wallet_transfer_send": "",
+    "wallet_transfer_balance": "",
+    "wallet_transfer_memo": "",
+    "wallet_transfer_amount": "",
+    "wallet_transfer_receive": "",
+    "wallet_transfer_menu": ""
 }

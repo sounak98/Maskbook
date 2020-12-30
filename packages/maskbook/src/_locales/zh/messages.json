@@ -392,5 +392,12 @@
     "plugin_poll_status_closed": "投票已截止",
     "plugin_poll_status_voting": "投票中",
     "plugin_poll_status_voted": "已投票.",
-    "plugin_poll_deadline": "{{time}}後截止"
+    "plugin_poll_deadline": "{{time}}後截止",
+    "wallet_transfer_to_address": "",
+    "wallet_transfer_send": "",
+    "wallet_transfer_balance": "",
+    "wallet_transfer_memo": "",
+    "wallet_transfer_amount": "",
+    "wallet_transfer_receive": "",
+    "wallet_transfer_menu": ""
 }
