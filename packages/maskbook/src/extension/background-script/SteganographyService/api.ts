@@ -9,6 +9,7 @@ import { OnDemandWorker } from '../../../web-workers/OnDemandWorker'
 export let StegoWorker: OnDemandWorker | undefined
 
 if (process.env.architecture) {
+    __webpack_public_path__ = browser.runtime.getURL('/')
     StegoWorker = new OnDemandWorker(new URL('./worker.ts', import.meta.url), { name: 'StegoWorker' })
 }
 
@@ -65,21 +66,12 @@ function toBuffer(imgData: ImageData, height: number, width: number): Promise<Ar
     return new Promise<ArrayBuffer>((resolve, reject) => {
         const callback: BlobCallback = (blob) => {
             if (blob) {
-                resolve(loadBuffer(blob))
+                resolve(blob.arrayBuffer())
             } else {
                 reject(new Error('fail to generate array buffer'))
             }
         }
         canvas.toBlob(callback, 'image/png')
-    })
-}
-
-function loadBuffer(blob: Blob) {
-    return new Promise<ArrayBuffer>((resolve, reject) => {
-        const reader = new FileReader()
-        reader.addEventListener('load', () => resolve(reader.result as ArrayBuffer))
-        reader.addEventListener('error', () => reject(new Error('fail to generate array buffer')))
-        reader.readAsArrayBuffer(blob)
     })
 }
 

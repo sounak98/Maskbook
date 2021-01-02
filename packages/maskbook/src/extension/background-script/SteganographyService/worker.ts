@@ -5,7 +5,6 @@ import * as implementation from './worker-implementation'
 
 const options: AsyncCallOptions = {
     channel: new WorkerChannel(),
-    strict: { methodNotFound: false },
     serializer: serialization,
 }
 
